@@ -15,6 +15,12 @@ firebase.auth().onAuthStateChanged(async function(user) {
       let json = await response.json()
       let movies = json.results
   
+      document.querySelector('.sign-in-or-sign-out').insertAdjacentHTML('beforeend', `
+        <div class="w-1/5 p-4">
+       Hi, ${user.displayName}
+        </div>
+      `)
+  
       
     for (let i=0; i<movies.length; i++) {
       let movie = movies[i]
@@ -40,7 +46,7 @@ firebase.auth().onAuthStateChanged(async function(user) {
     }) 
     }
 
-    document.querySelector('.sign-in-or-sign-out').innerHTML = `
+    document.querySelector('.sign-in-or-sign-out').innerHTML+= `
       <button class="text-pink-500 underline sign-out">Sign Out</button>
     `
 
